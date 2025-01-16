@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff - Infernal Records</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: #8b0000;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #f2f2f2;
+        }
+        .staff-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            flex: 1;
+        }
+        .staff-member {
+            background: #2b2b2b;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .staff-member img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .staff-member h3 {
+            margin: 10px 0 5px;
+            font-size: 1.2rem;
+            color: #ff4500;
+        }
+        .staff-member p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+        footer {
+            background: #8b0000;
+            text-align: center;
+            padding: 10px;
+            margin-top: auto;
+        }
+        footer p {
+            margin: 5px 0;
+            color: #f2f2f2;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #f2f2f2;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer a:hover {
+            color: #ff4500;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Our Staff</h1>
+    </header>
+    <div class="staff-container">
+        <div class="staff-member">
+            <img src="images/image1.jpg" alt="Andranik Kurghinyan">
+            <h3>Andranik Kurghinyan</h3>
+            <p>Technical Help</p>
+            <p>Musician, Photographer, Bass Player</p>
+        </div>
+        <div class="staff-member">
+            <img src="images/image2.jpg" alt="Narek">
+            <h3>Narek</h3>
+            <p>Photographer and Cassette Manufacturer</p>
+            <p>No bio available</p>
+        </div>
+        <div class="staff-member">
+            <img src="images/image3.jpg" alt="Beatrice">
+            <h3>Beatrice</h3>
+            <p>Graphic Designer</p>
+            <p>Photographer, Director, Graphic Designer</p>
+        </div>
+        <div class="staff-member">
+            <img src="images/image4.jpg" alt="Aram Grigoryan">
+            <h3>Aram Grigoryan</h3>
+            <p>Recording Studio Owner</p>
+            <p>No bio available</p>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 Infernal Records</p>
+        <p>
+            <a href="index.html">Home</a> |
+            <a href="#top">Back to Top</a>
+        </p>
+    </footer>
+</body>
+</html>

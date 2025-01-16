@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infernal Records</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: #f2f2f2;
+        }
+        header {
+            background: #8b0000;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            color: #f2f2f2;
+        }
+        nav {
+            background: #2b2b2b;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+        nav a {
+            color: #f2f2f2;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+        }
+        nav a:hover {
+            color: #ff4500;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        .bands {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .band {
+            background: #2b2b2b;
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+            margin: 10px;
+        }
+        .band h3 {
+            margin-top: 0;
+            color: #ff4500;
+        }
+        .band a {
+            color: #f2f2f2;
+            text-decoration: none;
+        }
+        .band a:hover {
+            color: #ff4500;
+        }
+        .band .button {
+            display: block;
+            background: #8b0000;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .band .button:hover {
+            background: #ff4500;
+            color: #f2f2f2; /* Ensure text remains visible */
+        }
+        footer {
+            background: #8b0000;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #f2f2f2;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer a:hover {
+            color: #ff4500;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            nav a {
+                font-size: 1rem;
+            }
+            .bands {
+                flex-direction: column;
+                align-items: center;
+            }
+            .band {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Infernal Records</h1>
+    </header>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#bands">Bands</a>
+        <a href="#contact">Contact</a>
+        <a href="policy.html">Policy</a> <!-- Link to the Policy page -->
+        <a href="staff.html">Staff</a> <!-- Link to the Staff page -->
+    </nav>
+    <div class="content" id="about">
+        <h2>About Us</h2>
+        <p>Infernal Records is an Armenian metal label born from the fiery depths of passion for heavy music. Founded to support and showcase the incredible talent of Armenian and regional metal bands, our mission is to amplify voices that resonate with raw energy and artistic innovation.</p>
+        <p>We believe in unleashing Armenia's heaviest sounds and fostering a community of metal enthusiasts worldwide.</p>
+    </div>
+    <div class="content" id="bands">
+        <h2>Our Bands</h2>
+        <div class="bands">
+            <div class="band">
+                <h3>Izerf</h3>
+                <p>Genre: Grunge Rock</p>
+                <p>Izerf delivers a gritty, raw sound inspired by the golden age of grunge, fused with modern rock elements.</p>
+                <a href="https://www.instagram.com/izerf_band/" target="_blank" class="button">Follow on Instagram</a>
+                <a href="https://web.telegram.org/a/#-1001603732780" target="_blank" class="button">Join Telegram</a>
+            </div>
+            <div class="band">
+                <h3>Bloodmoon</h3>
+                <p>Genre: Metal</p>
+                <p>A force of unrelenting metal power, Bloodmoon combines crushing riffs with haunting melodies.</p>
+                <a href="https://www.instagram.com/thebloodmoon_official/" target="_blank" class="button">Follow on Instagram</a>
+                <a href="https://t.me/blo0dm00nmusic" target="_blank" class="button">Join Telegram</a>
+            </div>
+            <div class="band">
+                <h3>Pareidolia</h3>
+                <p>Genre: Progressive Metal</p>
+                <p>Pareidolia creates intricate, thought-provoking music, blending technical proficiency with emotional depth.</p>
+                <a href="https://www.instagram.com/paareiidoliia/" target="_blank" class="button">Follow on Instagram</a>
+                <a href="https://t.me/pareidoliaband" target="_blank" class="button">Join Telegram</a>
+            </div>
+        </div>
+    </div>
+    <footer id="contact">
+        <h2>Contact Us</h2>
+        <p>Reach out to us through our channels:</p>
+        <p>
+            <a href="https://t.me/infernalrecords" target="_blank">Telegram</a> |
+            <a href="mailto:infernalrecordsarmenia@gmail.com">Email</a> |
+            <a href="https://www.instagram.com/infernal.record/" target="_blank">Instagram</a>
+        </p>
+    </footer>
+</body>
+</html>
