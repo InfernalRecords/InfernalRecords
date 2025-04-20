@@ -5,115 +5,529 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Staff - Infernal Records</title>
     <style>
+        /* Modern Font Import */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700;900&display=swap');
+        
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #1a1a1a;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #f2f2f2;
+            line-height: 1.6;
+            position: relative;
+            background: #0f0f0f;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
         }
+        
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg, 
+                #0f0f0f, 
+                #1a0000, 
+                #200000, 
+                #250000, 
+                #1a0000, 
+                #0f0f0f
+            );
+            background-size: 400% 400%;
+            animation: gradientBackground 15s ease infinite;
+            z-index: -1;
+        }
+        
+        @keyframes gradientBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* Header Styles */
         header {
-            background: #8b0000;
-            padding: 20px;
+            background: linear-gradient(135deg, #8b0000, #600000);
+            padding: 30px 20px;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
         }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,0 L100,100 M100,0 L0,100" stroke="rgba(255,255,255,0.05)" stroke-width="2"/></svg>');
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
         header h1 {
             margin: 0;
-            font-size: 2.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
             color: #f2f2f2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 2;
         }
-        .staff-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            padding: 20px;
+        
+        /* Navigation */
+        nav {
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        nav a {
+            color: #f2f2f2;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #ff4500;
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #ff4500;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Content Wrapper */
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
             flex: 1;
         }
-        .staff-member {
-            background: #2b2b2b;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
+        
+        /* Staff Grid */
+        .staff-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
         }
+        
+        .staff-member {
+            background: linear-gradient(145deg, rgba(39, 39, 39, 0.8), rgba(31, 31, 31, 0.9));
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+            animation-delay: calc(var(--i) * 0.15s);
+        }
+        
+        .staff-member::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 69, 0, 0.15), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+        
+        .staff-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .staff-member:hover::before {
+            opacity: 1;
+        }
+        
         .staff-member img {
             width: 100%;
             height: auto;
             border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
         }
+        
+        .staff-member:hover img {
+            transform: scale(1.03);
+        }
+        
         .staff-member h3 {
-            margin: 10px 0 5px;
-            font-size: 1.2rem;
+            margin: 15px 0 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
             color: #ff4500;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
+        
         .staff-member p {
             margin: 5px 0;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            color: #f2f2f2;
         }
+        
+        .staff-member p:first-of-type {
+            color: #ccc;
+            font-weight: bold;
+        }
+        
+        /* Footer */
         footer {
-            background: #8b0000;
+            background: linear-gradient(135deg, #8b0000, #600000);
             text-align: center;
-            padding: 10px;
+            padding: 40px 20px;
+            position: relative;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
             margin-top: auto;
         }
-        footer p {
-            margin: 5px 0;
-            color: #f2f2f2;
-            font-size: 0.9rem;
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,0 L100,100 M100,0 L0,100" stroke="rgba(255,255,255,0.05)" stroke-width="2"/></svg>');
+            opacity: 0.3;
+            z-index: 1;
         }
-        footer a {
+        
+        footer p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        footer .home-button {
             color: #f2f2f2;
             text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #8b0000, #700000);
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
             margin: 0 10px;
         }
-        footer a:hover {
-            color: #ff4500;
+        
+        footer .home-button .button-shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        footer .home-button:hover {
+            color: white;
+            background: linear-gradient(135deg, #ff4500, #cc3700);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.3);
+        }
+        
+        footer .home-button:hover .button-shine {
+            left: 100%;
+        }
+        
+        /* Fiery Embers Effect */
+        .embers {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .ember {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background-color: #ff4500;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(255, 69, 0, 0.8);
+            animation: float 3s infinite ease-in;
+            opacity: 0;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #8b0000;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff4500;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            padding-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: #f2f2f2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .page-title::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #8b0000, #ff4500, #8b0000, transparent);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                padding: 10px;
+            }
+            
+            nav a {
+                margin: 5px 10px;
+                font-size: 1rem;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .staff-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .staff-member h3 {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .staff-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Animated Embers -->
+    <div class="embers" id="embers"></div>
+    
     <header>
-        <h1>Our Staff</h1>
+        <h1>Infernal Records</h1>
     </header>
-    <div class="staff-container">
-        <div class="staff-member">
-            <img src="image1.jpg" alt="Andranik Kurghinyan">
-            <h3>Andranik Kurghinyan</h3>
-            <p>Operations Director</p>
-            <p>Musician, Photographer, Bass Player</p>
-        </div>
-        <div class="staff-member">
-            <img src="image2.jpg" alt="Narek">
-            <h3>Narek</h3>
-            <p>Photographer and Cassette Manufacturer</p>
-            <p>No bio available</p>
-        </div>
-        <div class="staff-member">
-            <img src="image3.JPG" alt="Beatrice">
-            <h3>Beatrice</h3>
-            <p>Graphic Designer</p>
-            <p>Photographer, Director, Graphic Designer</p>
-        </div>
-        <div class="staff-member">
-            <img src="image4.jpg" alt="Aram Grigoryan">
-            <h3>Aram Grigoryan</h3>
-            <p>Recording Studio Owner</p>
-            <p>No bio available</p>
-        </div>
-        <div class="staff-member">
-            <img src="image5.jpg" alt="Nika Manukyan">
-            <h3>Nika Manukyan</h3>
-            <p>Head Assistant</p>
-            <p>Musician, Photographer</p>
+    
+    <nav>
+        <a href="index.html#about">About</a>
+        <a href="index.html#bands">Bands</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="policy.html">Policy</a>
+        <a href="staff.html">Staff</a>
+    </nav>
+    
+    <div class="content-wrapper">
+        <h2 class="page-title">Our Staff</h2>
+        
+        <div class="staff-container">
+            <div class="staff-member" style="--i:1">
+                <img src="image1.jpg" alt="Andranik Kurghinyan">
+                <h3>Andranik Kurghinyan</h3>
+                <p>Operations Director</p>
+                <p>Musician, Photographer, Bass Player</p>
+            </div>
+            
+            <div class="staff-member" style="--i:2">
+                <img src="image2.jpg" alt="Narek">
+                <h3>Narek</h3>
+                <p>Photographer and Cassette Manufacturer</p>
+                <p>No bio available</p>
+            </div>
+            
+            <div class="staff-member" style="--i:3">
+                <img src="image3.JPG" alt="Beatrice">
+                <h3>Beatrice</h3>
+                <p>Graphic Designer</p>
+                <p>Photographer, Director, Graphic Designer</p>
+            </div>
+            
+            <div class="staff-member" style="--i:4">
+                <img src="image4.jpg" alt="Aram Grigoryan">
+                <h3>Aram Grigoryan</h3>
+                <p>Recording Studio Owner</p>
+                <p>No bio available</p>
+            </div>
+            
+            <div class="staff-member" style="--i:5">
+                <img src="image5.jpg" alt="Nika Manukyan">
+                <h3>Nika Manukyan</h3>
+                <p>Head Assistant</p>
+                <p>Musician, Photographer</p>
+            </div>
         </div>
     </div>
+    
     <footer>
         <p>&copy; 2025 Infernal Records</p>
         <p>
-            <a href="index.html">Home</a> |
-            <a href="#top">Back to Top</a>
+            <a href="index.html" class="home-button">
+                Home
+                <span class="button-shine"></span>
+            </a>
+            <a href="#top" class="home-button">
+                Back to Top
+                <span class="button-shine"></span>
+            </a>
         </p>
     </footer>
+    
+    <script>
+        // Create animated embers effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const embersContainer = document.getElementById('embers');
+            const emberCount = 30;
+            
+            for (let i = 0; i < emberCount; i++) {
+                createEmber();
+            }
+            
+            function createEmber() {
+                const ember = document.createElement('div');
+                ember.classList.add('ember');
+                
+                // Random position
+                const posX = Math.random() * window.innerWidth;
+                ember.style.left = posX + 'px';
+                
+                // Random size
+                const size = Math.random() * 4 + 1;
+                ember.style.width = size + 'px';
+                ember.style.height = size + 'px';
+                
+                // Random animation duration
+                const duration = Math.random() * 5 + 3;
+                ember.style.animationDuration = duration + 's';
+                
+                // Random delay
+                const delay = Math.random() * 5;
+                ember.style.animationDelay = delay + 's';
+                
+                embersContainer.appendChild(ember);
+                
+                // Remove and recreate ember after animation completes
+                setTimeout(() => {
+                    ember.remove();
+                    createEmber();
+                }, (duration + delay) * 1000);
+            }
+            
+            // Add animation delay for staff members
+            const staffMembers = document.querySelectorAll('.staff-member');
+            staffMembers.forEach((member, index) => {
+                member.style.setProperty('--i', index + 1);
+            });
+        });
+    </script>
 </body>
 </html>
